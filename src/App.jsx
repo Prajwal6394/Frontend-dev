@@ -1,31 +1,27 @@
+import { useState } from 'react'
 import './App.css'
 
-let todoForToday = {
-  title: "Hit the gym",
-  description: "Go to the gym from 7-9",
-  id: "1"
-}
 
 function App() {
+  const [todoForToday, setChangeTodo] = useState({
+    title: "Hit the gym",
+    description: "Go to the gym from 7-9",
+    id: "1"
+  });
+
+  setInterval(() => {
+    setChangeTodo({
+      title: "Hit the gym smart",
+      description: "Go to the gym from 10-9",
+      id: "3"
+    })
+  }, 2000);
   return (
     <div>
-      <h1>Hii there </h1>
-      <HelloWorldComponent1></HelloWorldComponent1>
+    {todoForToday.id}<br/>
+    {todoForToday.title}<br/>
+    {todoForToday.description}
     </div>
   )
-}
-function HelloWorldComponent1(){
-  return <div>
-    {todoForToday.id}
-    {todoForToday.title}
-    {todoForToday.description}
-    <HelloWorldComponent2></HelloWorldComponent2>
-  </div>
-}
-
-function HelloWorldComponent2(){
-  return <div>
-    Hello world 2
-  </div>
 }
 export default App
