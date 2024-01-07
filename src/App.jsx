@@ -1,34 +1,43 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+ 
+// let todos = [
+//   {
+//   title: "go to gym",
+//   description: "go to gym at 8:00 pm",
+//   id: "1241351bfjbkj351k32"
+//   },{
+//     title: "go to dinner",
+//     description: "go to dinner at 10:00 pm",
+//     id: "1241351bfjbkj35vsdt232"
+//   },{
+//     title: "wake up",
+//     description: "wake up at 9:00 am in the morning",
+//     id: "1241351bfjbkj351v12342"
+//   }    
+// ];
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todo, setTodo] = useState({
+    title: "go to dinner",
+    description: "go to dinner at 10:00 pm",
+    id: "1241351bfjbkj35vsdt232"
+  })
 
+  setInterval(() => {
+    setTodo({
+      title: "Hello, I am changesd",
+      description: "I am descp",
+      id: "Hello, Id would be  - `99913`24"
+    })
+  }, 2000);
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <h1>Hii there </h1>
+      <h5>{todo.title}</h5>
+      <h5>{todo.description}</h5>
+      <h5>{todo.id}</h5>
+    </div>
   )
 }
 
