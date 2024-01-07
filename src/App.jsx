@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react'
 import './App.css'
 
@@ -11,17 +12,23 @@ function App() {
 
   setInterval(() => {
     setChangeTodo({
-      title: "Hit the gym smart",
+      title: "Hit the gym smart   " + Math.random(),
       description: "Go to the gym from 10-9",
       id: "3"
     })
   }, 2000);
   return (
     <div>
-    {todoForToday.id}<br/>
-    {todoForToday.title}<br/>
-    {todoForToday.description}
+      <RenderWithProp  todoForToday={todoForToday} ></RenderWithProp>
     </div>
   )
+}
+
+function RenderWithProp(props){
+  return <div>
+    {props.todoForToday.id} <br/>
+    {props.todoForToday.description} <br/>
+    {props.todoForToday.title}
+  </div>
 }
 export default App
