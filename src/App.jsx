@@ -26,8 +26,6 @@ function App() {
 
 function RenderWithProp(props){
   return <div>
-    {props.todoForToday.id} <br/>
-    {props.todoForToday.description} <br/>
     {props.todoForToday.title}
   </div>
 }
