@@ -9,7 +9,7 @@ function App() {
     description: "Go to the gym from 7-9",
     id: "1"
   });
-
+// useState hook implementation
   setInterval(() => {
     setChangeTodo({
       title: "Hit the gym smart   " + Math.random(),
