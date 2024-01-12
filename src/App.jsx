@@ -9,6 +9,8 @@ function App() {
     description: "Go to the gym from 7-9",
     id: "1"
   });
+
+
 // useState hook implementation
   setInterval(() => {
     setChangeTodo({
@@ -17,6 +19,8 @@ function App() {
       id: "3"
     })
   }, 2000);
+
+  // starting with custom hooks
   return (
     <div>
       <RenderWithProp  todoForToday={todoForToday} ></RenderWithProp>
