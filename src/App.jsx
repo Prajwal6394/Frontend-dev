@@ -20,7 +20,6 @@ function App() {
     })
   }, 2000);
 
-  // starting with custom hooks
   return (
     <div>
       <RenderWithProp  todoForToday={todoForToday} ></RenderWithProp>
