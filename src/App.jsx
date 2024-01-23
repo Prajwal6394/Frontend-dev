@@ -4,86 +4,43 @@ import './App.css'
 
 
 function App() {
-  const [todoForToday, setChangeTodo] = useState({
-    title: "Hit the gym",
-    description: "Go to the gym from 7-9",
-    id: "1"
-  });
+  const [todos, setTodos] = useState([{
+    id: 1,
+    title: 'hit the gym',
+    description: 'hit the gym from 8-9'
+  },{
+    id: 2,
+    title: 'hit the duty',
+    description: 'hit the duty from 4-9'
+  }
+]);
 
-  let newArray = [
-    {
-      name: "Prajwal",
-      age: 23,
-    },
-    {
-      name: "Rahuk",
-      age: 15,
-    },
-    {
-      name: "Sam",
-      age: 25,
-    },
-    {
-      name: "Ronnie",
-      age: 10,
-    },
-  ];
-  
-  // let updatetArray = [];
-  
-  // for (let i = 0; i < newArray.length; i++) {
-  //   if (newArray[i].age > 18) {
-  //     updatetArray.push({
-  //       name: newArray[i].name,
-  //       age: newArray[i].age,
-  //       isAllowed: true,
-  //     });
-  //   } else {
-  //     updatetArray.push({
-  //       name: newArray[i].name,
-  //       age: newArray[i].age,
-  //       isAllowed: false,
-  //     });
-  //   }
-  // }
-  
-  updatetArray = newArray.map((value) => {
-    if (value.age > 18) {
-      return {
-        name: value.name,
-        age: value.age,
-        isAllowed: false,
-      };
-    } else {
-      return {
-        name: value.name,
-        age: value.age,
-        isAllowed: true,
-      };
-    }
-  });
-  
-  console.log(updatetArray);
   
 // useState hook implementation
-  setInterval(() => {
-    setChangeTodo({
-      title: "Hit the gym smart   " + Math.random(),
-      description: "Go to the gym from 10-9",
-      id: "3"
-    })
-  }, 2000);
+  // setInterval(() => {
+  //   setChangeTodo({
+  //     title: "Hit the gym smart   " + Math.random(),
+  //     description: "Go to the gym from 10-9",
+  //     id: "3"
+  //   })
+  // }, 2000);
 
   return (
     <div>
-      <RenderWithProp  todoForToday={todoForToday} ></RenderWithProp>
+      {todos.map((todo) => {
+        return <div>
+          <Todo title={todo.title} description={todo.description} ></Todo>
+          <br/>
+        </div>
+      })}
     </div>
   )
 }
 
-function RenderWithProp(props){
+function Todo(props){
   return <div>
-    {props.todoForToday.title}
+    {props.title}
+    {props.description}
   </div>
 }
 export default App
