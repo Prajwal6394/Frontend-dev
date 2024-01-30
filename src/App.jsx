@@ -55,7 +55,7 @@ function App() {
     </div>
   );
 }
-
+// todo component for better code readability
 function Todo(props) {
   return (
     <div>
