@@ -23,7 +23,13 @@ function App() {
     id: "3",
   });
 
-  React.useEffect(() => {})
+  setTimeout(() => {
+    setTodo({
+      title: "this is changed",
+      description: "this also been changed",
+      id: 1
+    })
+  }, 5000)
   
   
 
