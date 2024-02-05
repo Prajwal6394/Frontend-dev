@@ -23,20 +23,8 @@ function App() {
     id: "3",
   });
 
-  // useState hook implementation
-
-  if(counter === 1) {
-    console.log('hello, render');
-
-    setInterval(() => {
-      setTodo({
-        title: "Hit the gym smart   " + Math.random(),
-        description: "Go to the gym from 10-9",
-        id: "3",
-      });
-    }, 2000);
-    counter  = 0
-  }
+  React.useEffect(() => {})
+  
   
 
   return (
@@ -61,6 +49,7 @@ function Todo(props) {
     <div>
       {props.title}
       {props.description}
+     
     </div>
   );
 }
