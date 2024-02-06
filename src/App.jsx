@@ -2,10 +2,9 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
-let counter = 1;
-function App() {
+function useTodo(){
   const [todos, setTodos] = useState([]);
-  console.log('above useEffe')
+
   useEffect(() => {
     fetch("http://localhost:3000/todos",{
       method: "GET",
@@ -16,6 +15,11 @@ function App() {
       })
     })
   }, [])
+  return todos; 
+}
+function App() {
+  console.log('above useEffe')
+  const todos = useTodo();
   return (
     <div>
       {todos.map((todo) => {
