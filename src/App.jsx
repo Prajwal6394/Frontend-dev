@@ -4,11 +4,7 @@ import "./App.css";
 
 let counter = 1;
 function App() {
-  const [todo, setTodo] = useState({
-    title: "Hit the gym smart   ",
-    description: "Go to the gym from 10-9",
-    id: "3",
-  });
+  const [todos, setTodos] = useState([]);
   console.log('above useEffe')
   useEffect(() => {
     fetch("http://localhost:3000/todos",{
@@ -16,13 +12,20 @@ function App() {
     }).then((response) => {
       response.json().then((data) => {
         console.log(data);
+        setTodos(data);
       })
     })
   }, [])
   return (
     <div>
-      {todo.description} <br/>
-      {todo.title}
+      {todos.map((todo) => {
+        return <div className="container">
+          {todo.title}
+          {todo.description}
+          <button>Delete</button>
+          <br/>
+        </div>
+      })}
     </div>
   );
 }
