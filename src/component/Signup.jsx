@@ -1,3 +1,6 @@
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 function Signup() {
   return (
     <div>
@@ -6,15 +9,16 @@ function Signup() {
           style={{
             border: "2px solid black",
             width: 400,
-            marginTop: 120
+            marginTop: 120,
+            padding: 20
           }}
         >
           <h4>Sign up and explore this course selling app</h4> <br />
-          User name - <input type={"text"}></input>
+          <TextField id="outlined-basic" label="Email" variant="outlined" />
           <br />
-          Password - <input type={"password"}></input>
+          <TextField id="outlined-basic"  type="password" label="Passoword" variant="outlined" />
           <br />
-          <button>Sign up </button>
+          <Button variant="contained">Sign up</Button>
         </div>
       </center>
     </div>
