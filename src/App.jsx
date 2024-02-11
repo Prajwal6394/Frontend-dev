@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import "./App.css";
-
+import Signup from "./component/Signup";
 // function useTodo() {
 //   const [todos, setTodos] = useState([]);
 //   function fectTodo() {
@@ -21,7 +21,8 @@ import "./App.css";
 // }
 function App() {
   return (
-   <>Hello
+   <>
+    <Signup />
    </>
   );
 }
