@@ -5,15 +5,21 @@ import TextField from "@mui/material/TextField";
 function Signup() {
   return (
     <div>
-      <center>
+      <div  style={{
+      display: "flex",
+      justifyContent: "center"
+    }}>
       <Typography variant="h6" style={{
             paddingTop: 150,
             marginBottom: 15
           }}>
             Sign up and explore this course selling app
           </Typography>
-      </center>
-      <center>
+      </div>
+      <div  style={{
+      display: "flex",
+      justifyContent: "center"
+    }}>
         <Card
           style={{
             width: 400,
@@ -43,7 +49,7 @@ function Signup() {
             Sign up
           </Button>
         </Card>
-      </center>
+      </div>
     </div>
   );
 }

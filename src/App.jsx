@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import "./App.css";
+import Appbar from "./component/Appbar";
 import Signup from "./component/Signup";
 // function useTodo() {
 //   const [todos, setTodos] = useState([]);
@@ -26,6 +27,7 @@ function App() {
     height: "100vh",
     background: "#FDFBF2"
    }}>
+    <Appbar />
     <Signup />
    </div>
   );
