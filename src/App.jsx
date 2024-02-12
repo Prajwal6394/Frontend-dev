@@ -21,9 +21,13 @@ import Signup from "./component/Signup";
 // }
 function App() {
   return (
-   <>
+   <div style={{
+    width: "100vw",
+    height: "100vh",
+    background: "#FDFBF2"
+   }}>
     <Signup />
-   </>
+   </div>
   );
 }
 export default App;
