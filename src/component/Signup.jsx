@@ -14,11 +14,11 @@ function Signup() {
           }}
         >
           <h4>Sign up and explore this course selling app</h4> <br />
-          <TextField id="outlined-basic" label="Email" variant="outlined" />
-          <br />
-          <TextField id="outlined-basic"  type="password" label="Passoword" variant="outlined" />
-          <br />
-          <Button variant="contained">Sign up</Button>
+          <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth />
+          <br /><br />
+          <TextField id="outlined-basic"  type="password" label="Passoword" variant="outlined" fullWidth />
+          <br /><br />
+          <Button size='large' variant="contained">Sign up</Button>
         </div>
       </center>
     </div>
