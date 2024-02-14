@@ -5,39 +5,39 @@ import TextField from "@mui/material/TextField";
 function Signup() {
   return (
     <div>
-      <div  style={{
-      display: "flex",
-      justifyContent: "center"
-    }}>
-      <Typography variant="h6" style={{
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Typography
+          variant="h6"
+          style={{
             paddingTop: 150,
-            marginBottom: 15
-          }}>
-            Sign up and explore this course selling app
-          </Typography>
+            marginBottom: 15,
+          }}
+        >
+          Sign up and explore this course selling app
+        </Typography>
       </div>
-      <div  style={{
-      display: "flex",
-      justifyContent: "center"
-    }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         <Card
           style={{
             width: 400,
             padding: 20,
           }}
         >
-          
-
-          <TextField
-            id="outlined-basic"
-            label="Email"
-            variant="outlined"
-            fullWidth
-          />
+          <TextField id="username" label="Email" variant="outlined" fullWidth />
           <br />
           <br />
           <TextField
-            id="outlined-basic"
+            id="password"
             type="password"
             label="Passoword"
             variant="outlined"
@@ -45,7 +45,24 @@ function Signup() {
           />
           <br />
           <br />
-          <Button size="large" variant="contained">
+          <Button
+            size="large"
+            variant="contained"
+            onClick={() => {
+              let username = document.getElementById("username").value;
+              let password = document.getElementById("password").value;
+              fetch("http://localhost:3000/admin/signup", {
+                method: "POST",
+                body: JSON.stringify({
+                  username: username,
+                  password: password,
+                }),
+                headers: {
+                  "Content-type": "application/json",
+                },
+              });
+            }}
+          >
             Sign up
           </Button>
         </Card>
