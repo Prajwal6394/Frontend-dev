@@ -13,13 +13,12 @@ function App() {
         background: "#FDFBF2",
       }}
     >
-      <Appbar/>
       <Router>
+      <Appbar/>
         <Routes>
-
           <Route path="/addcourse" element={<AddCourse />} />
           <Route path="/login" element={<Signin />} />
-          <Route path="/singup" element={<Signup />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </Router>
     </div>
