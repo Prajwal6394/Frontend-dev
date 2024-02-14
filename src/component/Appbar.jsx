@@ -6,9 +6,10 @@ function Appbar(){
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            padding:5
+            padding:25,
+            background: "#36454F"
         }}>
-            <Typography variant="h6">CourseTech</Typography>
+            <Typography variant="h6" style={{color: "white"}}>CourseTech</Typography>
             <div>
             <Button 
             variant="contained" 
