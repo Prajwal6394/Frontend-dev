@@ -1,34 +1,18 @@
-import { Card, Typography } from "@mui/material";
+import { Card } from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 
-function Signup() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  return (
-    <div>
-      <div
+function AddCourse(){
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    return (
+        <>
+             <div
         style={{
           display: "flex",
           justifyContent: "center",
-        }}
-      >
-        <Typography
-          variant="h6"
-          style={{
-            paddingTop: 150,
-            marginBottom: 15,
-          }}
-        >
-          Sign up and explore this course selling app
-        </Typography>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
+          paddingTop: 120
         }}
       >
         <Card
@@ -39,10 +23,10 @@ function Signup() {
         >
           <TextField
             onChange={(e) => {
-              setEmail(e.target.value);
+              setTitle(e.target.value);
             }}
             id="username"
-            label="Email"
+            label="Title"
             variant="outlined"
             fullWidth
           />
@@ -50,10 +34,9 @@ function Signup() {
           <br />
           <TextField
             onChange={(e) => {
-              setPassword(e.target.value);
+              setDescription(e.target.value);
             }}
-            type="password"
-            label="Passoword"
+            label="Description"
             variant="outlined"
             fullWidth
           />
@@ -63,14 +46,17 @@ function Signup() {
             size="large"
             variant="contained"
             onClick={() => {
-              fetch("http://localhost:3000/admin/signup", {
+              fetch("http://localhost:3000/admin/courses", {
                 method: "POST",
                 body: JSON.stringify({
-                  username: email,
-                  password: password,
+                  username: title,
+                  imageLink: "",
+                  published: true,
+                  password: description,
                 }),
                 headers: {
                   "Content-type": "application/json",
+                  "Authorization": `Bearer ${localStorage.getItem('token')}`
                 },
               })
                 .then((res) => {
@@ -82,12 +68,12 @@ function Signup() {
                 });
             }}
           >
-            Sign up
+            Add course
           </Button>
         </Card>
       </div>
-    </div>
-  );
+        </>
+    )
 }
 
-export default Signup;
+export default AddCourse;
