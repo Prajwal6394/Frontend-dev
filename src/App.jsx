@@ -10,7 +10,7 @@ function App() {
       style={{
         width: "100vw",
         height: "100vh",
-        background: "#FDFBF2",
+        background: "white",
       }}
     >
       <Router>
