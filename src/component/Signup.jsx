@@ -2,8 +2,10 @@ import { Card, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -79,7 +81,9 @@ function Signup() {
                 .then((data) => {
                   console.log("this is the data", data);
                   localStorage.setItem('token', data.token)
-                });
+                }).then(() => {
+                  navigate('/add-course');
+                })
             }}
           >
             Sign up
