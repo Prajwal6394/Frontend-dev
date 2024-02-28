@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-
+import courseImage from '../assets/courses.png'
 function Courses() {
   const [courses, setCourses] = useState([]);
 
@@ -27,12 +27,25 @@ function Courses() {
 
   return (
     <>
+         <Typography
+          variant="h5"
+          style={{
+            marginTop: 20,
+            display: "flex",
+            alignItems: "center",
+            textAlign: "center",
+            justifyContent: "center"
+          }}
+        >
+          Courses, you are a creator - Keep up the pace
+        </Typography>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '50px', padding: "5%", justifyContent: "center", }}>
       {courses.map((course) => (
         <Card key={course.id} sx={{ maxWidth: 345, marginBottom: "20px" }}>
           {/* Use the imageLink from the course object */}
           <CardMedia
             sx={{ height: 140 }}
-            image="CourseImage" // Use the imageLink from the course object
+            image={courseImage} // Use the imageLink from the course object
             title="Demo course title" // Use the username as the title
           />
           <CardContent>
@@ -49,7 +62,9 @@ function Courses() {
           </CardActions>
         </Card>
       ))}
+    </div>
     </>
+
   );
 }
 
