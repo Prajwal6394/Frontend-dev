@@ -85,7 +85,7 @@ function Signin() {
                 .then((data) => {
                   console.log('this is data',data)
                   localStorage.setItem("token", data.token);
-                  navigate('/add-course')
+                  navigate('/courses')
                 });
             }}
             variant="contained"
