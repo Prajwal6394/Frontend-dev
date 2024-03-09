@@ -2,11 +2,13 @@ import { Card } from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddCourse() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageLink, setCourseImageLink] = useState("");
+  const navigate = useNavigate();
   return (
     <>
       <div
@@ -76,7 +78,7 @@ function AddCourse() {
                 })
                 .then((data) => {
                   console.log("this is the data", data);
-                  localStorage.setItem("token", data.token);
+                  navigate('/courses')
                 });
             }}
           >
