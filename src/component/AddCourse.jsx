@@ -3,18 +3,20 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 
-function AddCourse(){
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    return (
-        <>
-             <div
+function AddCourse() {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [imageLink, setCourseImageLink] = useState("");
+  return (
+    <>
+      <div
         style={{
           display: "flex",
           justifyContent: "center",
-          paddingTop: 120
+          paddingTop: 120,
         }}
       >
+        {/* <h5>Add course, getting started your teaching journey</h5> */}
         <Card
           style={{
             width: 400,
@@ -42,6 +44,16 @@ function AddCourse(){
           />
           <br />
           <br />
+          <TextField
+            onChange={(e) => {
+              setCourseImageLink(e.target.value);
+            }}
+            label="Course image link"
+            variant="outlined"
+            fullWidth
+          />
+          <br />
+          <br />
           <Button
             size="large"
             variant="contained"
@@ -50,13 +62,13 @@ function AddCourse(){
                 method: "POST",
                 body: JSON.stringify({
                   username: title,
-                  imageLink: "",
+                  imageLink: imageLink,
                   published: true,
                   password: description,
                 }),
                 headers: {
                   "Content-type": "application/json",
-                  "Authorization": `Bearer ${localStorage.getItem('token')}`
+                  Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
               })
                 .then((res) => {
@@ -64,7 +76,7 @@ function AddCourse(){
                 })
                 .then((data) => {
                   console.log("this is the data", data);
-                  localStorage.setItem('token', data.token)
+                  localStorage.setItem("token", data.token);
                 });
             }}
           >
@@ -72,8 +84,8 @@ function AddCourse(){
           </Button>
         </Card>
       </div>
-        </>
-    )
+    </>
+  );
 }
 
 export default AddCourse;

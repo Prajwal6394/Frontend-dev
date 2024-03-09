@@ -5,7 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import courseImage from '../assets/courses.png'
 function Courses() {
   const [courses, setCourses] = useState([]);
 
@@ -45,7 +44,7 @@ function Courses() {
           {/* Use the imageLink from the course object */}
           <CardMedia
             sx={{ height: 140 }}
-            image={courseImage} // Use the imageLink from the course object
+            image={course.imageLink} // Use the imageLink from the course object
             title="Demo course title" // Use the username as the title
           />
           <CardContent>
