@@ -71,7 +71,7 @@ function Courses() {
       >
         {courses.map((course) => (
           <Card onClick={() => {
-            navigate('/courseDetail')
+            navigate('/course/${course.id}')
           } } key={course.id} sx={{ maxWidth: 345, marginBottom: "20px" }}>
             {/* Use the imageLink from the course object */}
             <CardMedia
