@@ -70,7 +70,9 @@ function Courses() {
         }}
       >
         {courses.map((course) => (
-          <Card key={course.id} sx={{ maxWidth: 345, marginBottom: "20px" }}>
+          <Card onClick={() => {
+            navigate('/courseDetail')
+          } } key={course.id} sx={{ maxWidth: 345, marginBottom: "20px" }}>
             {/* Use the imageLink from the course object */}
             <CardMedia
               sx={{ height: 140 }}
