@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
+import { CardActionArea } from "@mui/material";
 
 function Courses() {
   const [courses, setCourses] = useState([]);
@@ -70,27 +71,33 @@ function Courses() {
         }}
       >
         {courses.map((course) => (
-          <Card onClick={() => {
-            navigate('/courseDetail')
-          } } key={course.id} sx={{ maxWidth: 345, marginBottom: "20px" }}>
+          <Card
+            onClick={() => {
+              navigate("/course/" + course.id);
+            }}
+            key={course.id}
+            sx={{ maxWidth: 345, marginBottom: "20px" }}
+          >
             {/* Use the imageLink from the course object */}
-            <CardMedia
-              sx={{ height: 140 }}
-              image={course.imageLink} // Use the imageLink from the course object
-              title="Demo course title" // Use the username as the title
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {course.username}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {course.password}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Share</Button>
-              <Button size="small">Learn More</Button>
-            </CardActions>
+            <CardActionArea>
+              <CardMedia
+                sx={{ height: 140 }}
+                image={course.imageLink} // Use the imageLink from the course object
+                title="Demo course title" // Use the username as the title
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {course.username}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {course.password}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small">Share</Button>
+                <Button size="small">Learn More</Button>
+              </CardActions>
+            </CardActionArea>
           </Card>
         ))}
       </div>
