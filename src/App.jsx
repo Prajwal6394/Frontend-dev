@@ -5,6 +5,7 @@ import Signup from "./component/Signup";
 import AddCourse from "./component/AddCourse";
 import Courses from "./component/Courses";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CourseDetail from "./component/CourseDetai";
 function App() {
   return (
     <div
@@ -21,6 +22,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/add-course" element={<AddCourse />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/courseDetail" element={<CourseDetail />} />
         </Routes>
       </Router>
     </div>
