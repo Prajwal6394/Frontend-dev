@@ -50,7 +50,7 @@ function CourseDetail() {
       }}
     >
       <CourseDetailCard course={course} />
-      <UpdateCourseCard course={course} />
+      <UpdateCourseCard setCourses={setCourses} course={course}  courses={courses}/>
     </div>
   );
 }
@@ -58,6 +58,7 @@ function UpdateCourseCard(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageLink, setCourseImageLink] = useState("");
+  props.setCourses()
   return (
     <Card
       sx={{ maxWidth: 15000 }}
@@ -121,6 +122,15 @@ function UpdateCourseCard(props) {
             .then((data) => {
               console.log("this is the data", data);
               alert("course Updated");
+              let updatedCourses = [];
+              for(let i = 0; i < courses.length; i++){
+                if(courses[i].id === course.id){
+                  return{
+                    id: course.id,
+                    
+                  }
+                }
+              }
             });
         }}
       >
