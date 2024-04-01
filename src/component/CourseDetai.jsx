@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from 'recoil'; // Import useRecoilState
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -61,6 +61,8 @@ function CourseDetail() {
 }
 
 function UpdateCourseCard(props) {
+
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageLink, setCourseImageLink] = useState("");
@@ -106,7 +108,11 @@ function UpdateCourseCard(props) {
       />
       <br />
       <br />
-      <Button
+      <div style={{
+        "display": "flex",
+        "justifyContent": "space-between"
+      }}>
+  <Button
         size="large"
         variant="contained"
         onClick={() => {
@@ -146,6 +152,12 @@ function UpdateCourseCard(props) {
       >
         Update course
       </Button>
+
+      <Button onClick={() => {
+        navigate("/courses");
+      }}>Course List</Button>
+      </div>
+    
     </Card>
   );
 }
