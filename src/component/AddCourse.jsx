@@ -56,34 +56,45 @@ function AddCourse() {
           />
           <br />
           <br />
-          <Button
-            size="large"
-            variant="contained"
-            onClick={() => {
-              fetch("http://localhost:3000/admin/courses", {
-                method: "POST",
-                body: JSON.stringify({
-                  username: title,
-                  imageLink: imageLink,
-                  published: true,
-                  password: description,
-                }),
-                headers: {
-                  "Content-type": "application/json",
-                  Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-              })
-                .then((res) => {
-                  return res.json();
-                })
-                .then((data) => {
-                  console.log("this is the data", data);
-                  navigate('/courses')
-                });
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
-            Add course
-          </Button>
+            <Button
+              size="large"
+              variant="contained"
+              onClick={() => {
+                fetch("http://localhost:3000/admin/courses", {
+                  method: "POST",
+                  body: JSON.stringify({
+                    username: title,
+                    imageLink: imageLink,
+                    published: true,
+                    password: description,
+                  }),
+                  headers: {
+                    "Content-type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                  },
+                })
+                  .then((res) => {
+                    return res.json();
+                  })
+                  .then((data) => {
+                    console.log("this is the data", data);
+                    navigate("/courses");
+                  });
+              }}
+            >
+              Add course
+            </Button>
+
+            <Button onClick={() => {
+              navigate("/courses");
+            }} >List courses</Button>
+          </div>
         </Card>
       </div>
     </>
