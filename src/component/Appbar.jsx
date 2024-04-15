@@ -14,7 +14,6 @@ function Appbar() {
     }).then((res) => {
         return res.json();
     }).then((data) => {
-        console.log('this is data', data);
         setEmail(data.userName);
     })
   }, []);

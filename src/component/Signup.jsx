@@ -79,7 +79,6 @@ function Signup() {
                   return res.json();
                 })
                 .then((data) => {
-                  console.log("this is the data", data);
                   localStorage.setItem('token', data.token)
                 }).then(() => {
                   navigate('/add-course');

@@ -21,7 +21,6 @@ function Courses() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCourses(data.courses);
       })
       .catch((error) => console.error("Error fetching courses:", error));
@@ -73,7 +72,7 @@ function Courses() {
         {courses.map((course) => (
           <Card
             onClick={() => {
-              navigate("/course/" + course.id);
+              navigate("/course/" + course._id);
             }}
             key={course.id}
             sx={{ maxWidth: 345, marginBottom: "20px" }}
@@ -87,10 +86,10 @@ function Courses() {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                  {course.username}
+                  {course.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {course.password}
+                  {course.description}
                 </Typography>
               </CardContent>
               <CardActions>

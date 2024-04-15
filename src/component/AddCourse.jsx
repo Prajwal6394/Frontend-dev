@@ -72,7 +72,7 @@ function AddCourse() {
                     username: title,
                     imageLink: imageLink,
                     published: true,
-                    password: description,
+                    description: description,
                   }),
                   headers: {
                     "Content-type": "application/json",
@@ -82,8 +82,7 @@ function AddCourse() {
                   .then((res) => {
                     return res.json();
                   })
-                  .then((data) => {
-                    console.log("this is the data", data);
+                  .then(() => {
                     navigate("/courses");
                   });
               }}

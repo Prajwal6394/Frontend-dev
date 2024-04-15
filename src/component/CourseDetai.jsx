@@ -28,7 +28,6 @@ function CourseDetail() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCourses(data.courses);
       })
       .catch((error) => console.error("Error fetching courses:", error));
@@ -36,7 +35,7 @@ function CourseDetail() {
 
   useEffect(() => {
     if (courses.length > 0) {
-      const course = courses.find(c => c.id === parseInt(courseId));
+      const course = courses.find(c => c._id === courseId);
       setSelectedCourse(course);
     }
   }, [courseId, courses]);
@@ -116,13 +115,13 @@ function UpdateCourseCard(props) {
         size="large"
         variant="contained"
         onClick={() => {
-          fetch("http://localhost:3000/admin/courses/" + props.course.id, {
+          fetch("http://localhost:3000/admin/courses/" + props.course._id, {
             method: "PUT",
             body: JSON.stringify({
-              username: title,
+              title: title,
               imageLink: imageLink,
               published: true,
-              password: description,
+              description: description,
             }),
             headers: {
               "Content-type": "application/json",
@@ -133,14 +132,13 @@ function UpdateCourseCard(props) {
               return res.json();
             })
             .then((data) => {
-              console.log("this is the data", data);
               alert("course Updated");
               const updatedCourses = courses.map(c => {
                 if(c.id === props.course.id) {
                   return {
                     ...c,
                     username: title,
-                    password: description,
+                    description: description,
                     imageLink: imageLink
                   };
                 }
@@ -173,10 +171,10 @@ function CourseDetailCard(prop) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {prop.course.username}
+            {prop.course.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {prop.course.password}
+            {prop.course.description}
           </Typography>
         </CardContent>
         <CardActions>

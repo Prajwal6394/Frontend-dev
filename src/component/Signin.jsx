@@ -64,11 +64,6 @@ function Signin() {
           <Button
             size="large"
             onClick={() => {
-              console.log('this is body',
-              JSON.toString({
-                username: userName,
-                password: password,
-              }))
               fetch("http://localhost:3000/admin/login", {
                 body: JSON.stringify({
                   username: userName,
@@ -83,7 +78,6 @@ function Signin() {
                   return res.json();
                 })
                 .then((data) => {
-                  console.log('this is data',data)
                   localStorage.setItem("token", data.token);
                   navigate('/courses')
                 });
