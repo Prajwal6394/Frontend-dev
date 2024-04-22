@@ -16,10 +16,6 @@ The Course App is a web application built using ReactJS and Material-UI (MUI) th
    - Administrators can view a list of all registered users.
    - Administrators can manage user permissions and roles.
 
-3. **User Authentication**:
-   - Users can register and log in to the application.
-   - Different user roles (e.g., regular user, admin) have access to different features.
-
 4. **Material-UI (MUI) Design**:
    - The user interface is designed using the Material-UI (MUI) library, providing a modern and visually appealing look and feel.
    - The design follows the Material Design guidelines, ensuring a consistent and responsive layout.
