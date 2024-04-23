@@ -14,7 +14,6 @@ The Course App is a web application built using ReactJS and Material-UI (MUI) th
    - Administrators can access the admin panel to manage the courses.
    - Administrators can create, update, and delete courses.
    - Administrators can view a list of all registered users.
-   - Administrators can manage user permissions and roles.
 
 4. **Material-UI (MUI) Design**:
    - The user interface is designed using the Material-UI (MUI) library, providing a modern and visually appealing look and feel.
