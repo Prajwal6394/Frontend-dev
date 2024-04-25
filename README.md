@@ -23,7 +23,6 @@ The Course App is a web application built using ReactJS and Material-UI (MUI) th
 - **ReactJS**: A JavaScript library for building user interfaces.
 - **Material-UI (MUI)**: A popular React UI framework that implements Google's Material Design.
 - **React Router**: A library for handling client-side routing in React applications.
-- **Axios**: A popular HTTP client for making API requests.
 
 ## Getting Started
 
