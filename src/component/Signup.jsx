@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 function Signup() {
   const navigate = useNavigate();
@@ -64,25 +65,27 @@ function Signup() {
           <Button
             size="large"
             variant="contained"
-            onClick={() => {
-              fetch("http://localhost:3000/admin/signup", {
-                method: "POST",
-                body: JSON.stringify({
-                  username: email,
-                  password: password,
-                }),
-                headers: {
-                  "Content-type": "application/json",
-                },
-              })
-                .then((res) => {
-                  return res.json();
-                })
-                .then((data) => {
-                  localStorage.setItem('token', data.token)
-                }).then(() => {
-                  navigate('/add-course');
-                })
+            onClick={async () => {
+              try {
+                const response = await axios.post(
+                  "http://localhost:3000/admin/signup",
+                  {
+                    username: email,
+                    password,
+                  },
+                  {
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  }
+                );
+            
+                localStorage.setItem("token", response.data.token);
+                navigate("/add-course");
+              } catch (error) {
+                console.error("Error:", error);
+                // Handle error if needed
+              }
             }}
           >
             Sign up

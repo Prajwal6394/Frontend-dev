@@ -1,21 +1,27 @@
 import { Typography, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 function Appbar() {
   const naviagte = useNavigate();
   const [email, setEmail] = useState(null)
   useEffect(() => {
-    fetch('http://localhost:3000/admin/me', {
-        headers: {
-            "Content-type": "application/json",
-            "Authorization": `Bearer ${localStorage.getItem('token')}`
-          },
-        method: "GET",
-    }).then((res) => {
-        return res.json();
-    }).then((data) => {
-        setEmail(data.userName);
-    })
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/admin/me', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        setEmail(response.data.username);
+      } catch (error) {
+        console.error('Error:', error);
+        // Handle error if needed
+      }
+    };
+  
+    fetchData();
   }, []);
 
   if(email){
@@ -39,7 +45,7 @@ function Appbar() {
               style={{ marginRight: 20 }}
               onClick={() => {
                 localStorage.setItem('token', null)
-                naviagte("/signup");
+                naviagte("/");
               }}
             >
               Log out
@@ -74,7 +80,7 @@ function Appbar() {
         <Button
           variant="contained"
           onClick={() => {
-            naviagte("/login");
+            naviagte("/");
           }}
         >
           Sign in

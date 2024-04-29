@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -11,7 +12,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { CardActionArea } from "@mui/material";
 import {coursesState} from '../atom/coursesAtom';
-
+import axios from 'axios';
 
 function CourseDetail() {
   
@@ -19,18 +20,21 @@ function CourseDetail() {
   const [courses, setCourses] = useRecoilState(coursesState); // Use Recoil state
   const [selectedCourse, setSelectedCourse] = useState(null); // State to hold the selected course
   useEffect(() => {
-    fetch("http://localhost:3000/admin/courses", {
+
+    const fetchCourse = async () => {
+      try {
+        let response = await axios.get("http://localhost:3000/admin/courses", {
       headers: {
         "Content-type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      method: "GET",
     })
-      .then((res) => res.json())
-      .then((data) => {
-        setCourses(data.courses);
-      })
-      .catch((error) => console.error("Error fetching courses:", error));
+    setCourses(response.data.courses)
+      } catch (error) {
+        console.log('something occured');
+      } 
+    }
+    fetchCourse();
   }, [setCourses]);
 
   useEffect(() => {
@@ -114,38 +118,41 @@ function UpdateCourseCard(props) {
   <Button
         size="large"
         variant="contained"
-        onClick={() => {
-          fetch("http://localhost:3000/admin/courses/" + props.course._id, {
-            method: "PUT",
-            body: JSON.stringify({
-              title: title,
-              imageLink: imageLink,
-              published: true,
-              description: description,
-            }),
-            headers: {
-              "Content-type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          })
-            .then((res) => {
-              return res.json();
-            })
-            .then((data) => {
-              alert("course Updated");
-              const updatedCourses = courses.map(c => {
-                if(c.id === props.course.id) {
-                  return {
-                    ...c,
-                    username: title,
-                    description: description,
-                    imageLink: imageLink
-                  };
-                }
-                return c;
-              });
-              setCourses(updatedCourses);
+        onClick={async () => {
+          try {
+            const response = await axios.put(
+              `http://localhost:3000/admin/courses/${props.course._id}`,
+              {
+                title,
+                imageLink,
+                published: true,
+                description,
+              },
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+              }
+            );
+        
+            alert("Course Updated");
+            const updatedCourses = courses.map((c) => {
+              if (c.id === props.course.id) {
+                return {
+                  ...c,
+                  username: title,
+                  description,
+                  imageLink,
+                };
+              }
+              return c;
             });
+            setCourses(updatedCourses);
+          } catch (error) {
+            console.error("Error:", error);
+            // Handle error if needed
+          }
         }}
       >
         Update course

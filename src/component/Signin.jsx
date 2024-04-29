@@ -1,6 +1,7 @@
 import { Card, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -63,24 +64,27 @@ function Signin() {
           <br />
           <Button
             size="large"
-            onClick={() => {
-              fetch("http://localhost:3000/admin/login", {
-                body: JSON.stringify({
-                  username: userName,
-                  password: password,
-                }),
-                headers: {
-                  "Content-type": "application/json",
-                },
-                method: "POST",
-              })
-                .then((res) => {
-                  return res.json();
-                })
-                .then((data) => {
-                  localStorage.setItem("token", data.token);
-                  navigate('/courses')
-                });
+            onClick={async () => {
+              try {
+                const response = await axios.post(
+                  "http://localhost:3000/admin/login",
+                  {
+                    username: userName,
+                    password,
+                  },
+                  {
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  }
+                );
+            
+                localStorage.setItem("token", response.data.token);
+                navigate("/courses");
+              } catch (error) {
+                console.log("Something went wrong with backend");
+                // You can also handle the error here if needed
+              }
             }}
             variant="contained"
           >
