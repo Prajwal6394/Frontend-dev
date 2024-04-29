@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 function AddCourse() {
   const [title, setTitle] = useState("");
@@ -65,26 +66,28 @@ function AddCourse() {
             <Button
               size="large"
               variant="contained"
-              onClick={() => {
-                fetch("http://localhost:3000/admin/courses", {
-                  method: "POST",
-                  body: JSON.stringify({
-                    username: title,
-                    imageLink: imageLink,
-                    published: true,
-                    description: description,
-                  }),
-                  headers: {
-                    "Content-type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                  },
-                })
-                  .then((res) => {
-                    return res.json();
-                  })
-                  .then(() => {
-                    navigate("/courses");
-                  });
+              onClick={async () => {
+                try {
+                  await axios.post(
+                    "http://localhost:3000/admin/courses",
+                    {
+                      username: title,
+                      imageLink,
+                      published: true,
+                      description,
+                    },
+                    {
+                      headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                      },
+                    }
+                  );
+                  navigate("/courses");
+                } catch (error) {
+                  console.error("Error:", error);
+                  // Handle error if needed
+                }
               }}
             >
               Add course

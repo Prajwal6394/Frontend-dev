@@ -7,23 +7,27 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import { CardActionArea } from "@mui/material";
+import axios from "axios";
 
 function Courses() {
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://localhost:3000/admin/courses", {
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setCourses(data.courses);
-      })
-      .catch((error) => console.error("Error fetching courses:", error));
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/admin/courses", {
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setCourses(response.data.courses);
+        console.log('this is course', response.data);
+      } catch (error) {
+        console.log("somethign went wront with backend", error);
+      }
+    };
+    fetchCourses();
   }, []);
 
   return (

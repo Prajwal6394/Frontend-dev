@@ -22,7 +22,7 @@ function App() {
         <Router>
           <Appbar />
           <Routes>
-            <Route path="/login" element={<Signin />} />
+            <Route path="/" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/add-course" element={<AddCourse />} />
             <Route path="/courses" element={<Courses />} />
