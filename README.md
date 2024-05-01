@@ -1,6 +1,6 @@
 # Course App
 
-The Course App is a web application built using ReactJS and Material-UI (MUI) that allows users to create, update, and read course information. It also includes an admin panel for managing the courses.
+The Course App is a web application built using ReactJS and Material-UI (MUI) that allows user to create, update, and read course information. It also includes an admin panel for managing the courses.
 
 ## Features
 
