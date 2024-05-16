@@ -47,7 +47,7 @@ To run the Course App locally, follow these steps:
    npm start
    ```
 
-5. Open the application in your web browser at `http://localhost:3000`.
+5. Open the application in your web browser at `http://localhost:5173`.
 
 ## Contributing
 
