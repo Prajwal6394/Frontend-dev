@@ -125,7 +125,7 @@ function UpdateCourseCard(props) {
       <TextField
        type="number"
         onChange={(e) => {
-          setCourses(e.target.value);
+          setCoursePrice(e.target.value);
         }}
         label="Course price"
         variant="outlined"
