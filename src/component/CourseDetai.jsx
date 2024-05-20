@@ -69,13 +69,14 @@ function UpdateCourseCard(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageLink, setCourseImageLink] = useState("");
+  const [coursePrice, setCoursePrice] = useState(0);
   const [courses, setCourses] = useRecoilState(coursesState); // Use Recoil state
 
   const cardStyle = {
     width: '30vw',
     padding: '20px',
     marginTop: '-12rem',
-    height: '20rem'
+    height: '25rem'
 
   }
 
@@ -116,6 +117,17 @@ function UpdateCourseCard(props) {
           setCourseImageLink(e.target.value);
         }}
         label="Course image link"
+        variant="outlined"
+        fullWidth
+      />
+      <br />
+      <br />
+      <TextField
+       type="number"
+        onChange={(e) => {
+          setCourses(e.target.value);
+        }}
+        label="Course price"
         variant="outlined"
         fullWidth
       />
@@ -185,7 +197,7 @@ function UpdateCourseCard(props) {
 function CourseDetailCard(prop) {
   const cardStyle = {
     width: '20vw',
-    marginTop: '-17rem',
+    marginTop: '-16rem',
     height: '20rem',
     borderRadius: '10px'
 
