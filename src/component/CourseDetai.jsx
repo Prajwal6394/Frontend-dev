@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilState } from 'recoil'; // Import useRecoilState
+import { useRecoilState } from "recoil"; // Import useRecoilState
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -11,35 +11,33 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { CardActionArea } from "@mui/material";
-import {coursesState} from '../atom/coursesAtom';
-import axios from 'axios';
+import { coursesState } from "../atom/coursesAtom";
+import axios from "axios";
 
 function CourseDetail() {
-  
   let { courseId } = useParams();
   const [courses, setCourses] = useRecoilState(coursesState); // Use Recoil state
   const [selectedCourse, setSelectedCourse] = useState(null); // State to hold the selected course
   useEffect(() => {
-
     const fetchCourse = async () => {
       try {
         let response = await axios.get("http://localhost:3000/admin/courses", {
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
-    setCourses(response.data.courses)
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        setCourses(response.data.courses);
       } catch (error) {
-        console.log('something occured');
-      } 
-    }
+        console.log("something occured");
+      }
+    };
     fetchCourse();
   }, [setCourses]);
 
   useEffect(() => {
     if (courses.length > 0) {
-      const course = courses.find(c => c._id === courseId);
+      const course = courses.find((c) => c._id === courseId);
       setSelectedCourse(course);
     }
   }, [courseId, courses]);
@@ -48,38 +46,50 @@ function CourseDetail() {
     return <div>Loading.....</div>;
   }
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        margin: "auto",
-        width: "70%",
-        marginTop: "10rem",
-      }}
-    >
-      <CourseDetailCard course={selectedCourse} />
-      <UpdateCourseCard course={selectedCourse} />
-    </div>
+    <>
+      <GreyAreaTopper course={selectedCourse} />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "auto",
+          width: "70%",
+          marginTop: "10rem",
+        }}
+      >
+        <UpdateCourseCard course={selectedCourse} />
+        <CourseDetailCard course={selectedCourse} />
+      </div>
+    </>
   );
 }
 
 function UpdateCourseCard(props) {
-
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageLink, setCourseImageLink] = useState("");
   const [courses, setCourses] = useRecoilState(coursesState); // Use Recoil state
 
+  const cardStyle = {
+    width: '30vw',
+    padding: '20px',
+    marginTop: '-12rem',
+    height: '20rem'
+
+  }
+
   return (
     <Card
       sx={{ maxWidth: 15000 }}
-      style={{
-        width: 400,
-        padding: 20,
-      }}
+      style={cardStyle}
     >
-      <Typography style={{marginBottom: "20px", textAlign: "center"}} variant="h5">Update course details</Typography>
+      <Typography
+        style={{ marginBottom: "20px", textAlign: "center" }}
+        variant="h5"
+      >
+        Update course details
+      </Typography>
       <TextField
         onChange={(e) => {
           setTitle(e.target.value);
@@ -111,65 +121,77 @@ function UpdateCourseCard(props) {
       />
       <br />
       <br />
-      <div style={{
-        "display": "flex",
-        "justifyContent": "space-between"
-      }}>
-  <Button
-        size="large"
-        variant="contained"
-        onClick={async () => {
-          try {
-            const response = await axios.put(
-              `http://localhost:3000/admin/courses/${props.course._id}`,
-              {
-                title,
-                imageLink,
-                published: true,
-                description,
-              },
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-              }
-            );
-        
-            alert("Course Updated");
-            const updatedCourses = courses.map((c) => {
-              if (c.id === props.course.id) {
-                return {
-                  ...c,
-                  username: title,
-                  description,
-                  imageLink,
-                };
-              }
-              return c;
-            });
-            setCourses(updatedCourses);
-          } catch (error) {
-            console.error("Error:", error);
-            // Handle error if needed
-          }
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
         }}
       >
-        Update course
-      </Button>
+        <Button
+          size="large"
+          variant="contained"
+          onClick={async () => {
+            try {
+              const response = await axios.put(
+                `http://localhost:3000/admin/courses/${props.course._id}`,
+                {
+                  title,
+                  imageLink,
+                  published: true,
+                  description,
+                },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                  },
+                }
+              );
 
-      <Button onClick={() => {
-        navigate("/courses");
-      }}>Course List</Button>
+              alert("Course Updated");
+              const updatedCourses = courses.map((c) => {
+                if (c.id === props.course.id) {
+                  return {
+                    ...c,
+                    username: title,
+                    description,
+                    imageLink,
+                  };
+                }
+                return c;
+              });
+              setCourses(updatedCourses);
+            } catch (error) {
+              console.error("Error:", error);
+              // Handle error if needed
+            }
+          }}
+        >
+          Update course
+        </Button>
+
+        <Button
+          onClick={() => {
+            navigate("/courses");
+          }}
+        >
+          Course List
+        </Button>
       </div>
-    
     </Card>
   );
 }
 
 function CourseDetailCard(prop) {
+  const cardStyle = {
+    width: '20vw',
+    marginTop: '-17rem',
+    height: '20rem',
+    borderRadius: '10px'
+
+  }
   return (
-    <Card sx={{ maxWidth: 345, marginBottom: "20px" }}>
+    <Card  style={cardStyle}>
       <CardActionArea>
         <CardMedia
           sx={{ height: 240 }}
@@ -191,6 +213,31 @@ function CourseDetailCard(prop) {
       </CardActionArea>
       {/* Use the imageLink from the course object */}
     </Card>
+  );
+}
+
+function GreyAreaTopper(prop) {
+  const containerStyle = {
+    backgroundColor: "#242424",
+    color: "#fff",
+    padding: "20px",
+    height: "25vh",
+    width: '97.9%',
+    margin: 'auto',
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+  };
+
+  const headingStyle = {
+    textAlign: 'center',
+    marginTop: '5rem'
+  }
+
+  return (
+    <>
+      <div style={containerStyle}>
+        <Typography style={headingStyle} variant="h2"> {prop.course.title} </Typography>
+      </div>
+    </>
   );
 }
 
