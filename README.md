@@ -29,16 +29,5 @@ This is the frontend of the Course Management System, built using React.js. The 
 - **API Communication:** Axios (or Fetch API)
 - **Animations:** Lottie (if applicable)
 
-## Installation
 
-### Prerequisites
-
-- Node.js installed on your machine
-- npm or yarn as the package manager
-
-### Steps
-
-1. **Clone the repository:**
-
-   ```bash
    git clone https://github.com/yourusername/course-frontend.git
