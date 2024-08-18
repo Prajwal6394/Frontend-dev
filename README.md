@@ -30,4 +30,4 @@ This is the frontend of the Course Management System, built using React.js. The 
 - **Animations:** Lottie (if applicable)
 
 
-   git clone https://github.com/yourusername/course-frontend.git
+  
