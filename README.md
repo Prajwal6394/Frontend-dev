@@ -1,6 +1,6 @@
 # Course Frontend Application
 
-This is the frontend of the Course Management System, built using React.js. The application allows users to browse, enroll, and manage courses, providing an intuitive and responsive user interface.
+This is the frontend of the Course Management System, built using React.js. The application allows users to browse, enroll, and manage courses, providing an intuitive and responsive user-interface.
 
 ## Table of Contents
 
