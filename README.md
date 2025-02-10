@@ -1,5 +1,5 @@
 # Course     
-  
+   
 This is the frontend of the Course Management System, built using React.js. The application users to browse, enroll, and manage courses.
 
 ## Table of Contents
